@@ -3,8 +3,8 @@ body {
     flex-direction: column;
     height: 100%;
     margin: 0;
+    background-color: rgb(158, 163, 185);
 
-    background-color: rgb(192, 197, 202);
 }
 
 /* body * {
@@ -16,6 +16,7 @@ header {
     height: 70px;
     display: flex;
     align-items: center;
+    background-color: rgb(192, 197, 202);
 
     h1{
         padding-left: 40px;
@@ -28,6 +29,13 @@ main {
     height: 90%;
     display: flex;
 
+}
+
+main .theme_toggle {
+    position: fixed;
+
+    top: 100px;
+    right: 20px;
 }
 
 main .space {
@@ -288,3 +296,41 @@ main .add_container {
         padding: 5px;
     }
 }
+
+body.dark_mode {
+    background-color: black;
+    color: white;
+
+    header {
+        background-color: rgb(57, 57, 57);
+    }
+
+    main {
+        background-color: black;
+
+
+    }
+
+    .todo_box {
+        background-color:  rgb(57, 57, 57);
+    }
+
+    .todo {
+        background-color:  rgb(57, 57, 57);
+        border-color: rgb(57, 57, 57);
+    }
+
+    .todo_list {
+        background-color: rgb(44, 51, 251);
+        border-color: rgb(57, 57, 57);
+    }
+
+    .desc_box, .edit_box, .add_box {
+        border-color: rgb(57, 57, 57);
+        background-color: rgb(57, 57, 57);
+    }
+
+}
+
+
+

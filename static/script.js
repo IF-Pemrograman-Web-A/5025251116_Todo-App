@@ -47,3 +47,11 @@ function checkHandle(checkbox){
         nameElement.style.textDecoration = "";
     }
 }
+
+function changeTheme(themeBtn){
+    if(themeBtn.textContent == "Dark Mode") themeBtn.textContent = "White Mode";
+    else themeBtn.textContent = "Dark Mode";
+
+    const bodyElement = document.querySelector('body');
+    bodyElement.classList.toggle("dark_mode");
+}
