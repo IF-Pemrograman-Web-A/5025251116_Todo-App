@@ -111,12 +111,21 @@ main .todo_container {
         outline-color: black;
         outline: 1px solid;
         
+        .upper {
+            display: flex;
+            justify-content: space-between;
+
+            input {
+                width: 15px;
+            }
+        }
         .name {
             height: 30px;
             font-size: large;
             display: flex;
             align-items: center;
         }
+        
 
         .date_time {
             font-size: smaller;
