@@ -21,3 +21,13 @@ Selain itu, ada button add untuk menambahkan to-do baru ke dalam to-do list: <br
 
 Secara teknis, perubahan box bagian kanan saya lakukan dengan menambahkan atribut `onclick` pada button yang memanggil fungsi didalam `<script>`. Di fungsi itu terdapat kode yang mengubah display dari box yang ingin dihilangkan menjadi `none` sedangkan yang dimunculkan menjadi `flex` atau sesuai display yang diinginkan. Lalu untuk pegoperasian dengan database ataupun back end, semua saya lakukan dengan library flask (saya memilih ini karena memang hanya ini yang pernah saya pelajari & sudah terbiasa) 
 
+# Update 1
+Saya baru sadar kalau DOM manipulation baru diajarkan disini, karena sebelumnya sudah ada fitur add, edit, dan delete. Maka di app ini tinggal menambahkan fitur checkbox & toggle dark-mode:
+<img width="1852" height="908" alt="image" src="https://github.com/user-attachments/assets/a73702b0-e218-4fe7-8122-59f6ebfcd481" /> <br>
+Disini checkbox akan memanggil event handler `onchange` yang memanggil fungsi `checkHandle(this)`. Fungsi ini akan mengecek status dari element checkbox, apakah checked atau tidak, jika iya akan merubah style dari box todo yang berkaitan:
+<img width="1851" height="899" alt="image" src="https://github.com/user-attachments/assets/666b2176-45cf-495a-bb95-488e805486e7" /> <br>
+Saat di-uncheck, style dari element tersebut juga akan direset ulang. Lalu untuk dark-mode, fitur ini menggunakan button di bagian atas kanan untuk memanggil fungsi `changeTheme` saat onclick, fungsi ini menambahkan class `dark_mode` pada element body. Sehingga `body.dark_mode {}` dan style yang diberlakukan pada css akan aktif, yang mana merubah tampilan web menjadi dark:
+<img width="1857" height="886" alt="image" src="https://github.com/user-attachments/assets/6fd3d399-edf5-43e0-812e-7291e00a2118" /> 
+Bisa dilihat juga bahwa saat button "dark mode" dipencet, textnya juga berubah menjadi "white mode". Jika button dipencet lagi akan merubahnya kembali ke theme awal
+
+
