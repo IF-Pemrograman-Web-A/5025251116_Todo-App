@@ -170,6 +170,14 @@ main .edit_container {
         background-color: rgb(239, 239, 239);
     }
 
+    #editPhotoPreview {
+        display: none; 
+        max-width: 100%; 
+        max-height: 200px; 
+        margin-bottom: 10px; 
+        border-radius: 8px;
+    }
+
     form {
         width: 100%;
         display: flex;
@@ -203,8 +211,9 @@ main .edit_container {
     }
 
     .line_btn {
+        width: 100%;
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-evenly;
         padding: 5px;
     }
 }
@@ -230,9 +239,22 @@ main .desc_container{
         }
 
         .desc {
-            min-height: 200px;
+            min-height: 20px;
             padding: 5px;
         }
+    }
+
+    #photoContainer{
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
+
+    #viewPhoto {
+        display: none; 
+        max-width: 50%; 
+        border-radius: 8px; 
+        margin: 15px;
     }
 }
 
@@ -256,6 +278,14 @@ main .add_container {
         padding: 5px;
         border-radius: 5px;
         background-color: rgb(239, 239, 239);
+    }
+
+    #addPhotoPreview {
+        display: none; 
+        max-width: 100%; 
+        max-height: 200px; 
+        margin-bottom: 10px; 
+        border-radius: 8px;
     }
 
     form {
@@ -291,8 +321,9 @@ main .add_container {
     }
 
     .line_btn {
+        width: 100%;
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-evenly;
         padding: 5px;
     }
 }
