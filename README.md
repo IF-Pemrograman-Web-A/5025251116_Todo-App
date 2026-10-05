@@ -4,7 +4,7 @@ Nama : Moh Zidan Ilmi Alwi
 NRP : 5025251116  
 Kelas : A  
 
-# Deskripsi & preview 
+# Deskripsi & preview (E01)
 Sesuai namanya, ini adalah web yang bisa menyimpan to-do/kegiatan yang akan dilakukan kedepannya. Jadi kita bisa memasukkan nama kegiatan, tanggal, waktu, beserta dengan deskripsi detail tentang kegiatan tersebut. Elemen utama di app ini berada di tengah, yaitu 2 box yang masing-masing berisi to-do list dan detail dari todo tersebut.  
 
 <img width="1858" height="897" alt="image" src="https://github.com/user-attachments/assets/24aa92b6-a092-40ba-8cef-1e236a1158d1" />  
@@ -21,7 +21,7 @@ Selain itu, ada button add untuk menambahkan to-do baru ke dalam to-do list: <br
 
 Secara teknis, perubahan box bagian kanan saya lakukan dengan menambahkan atribut `onclick` pada button yang memanggil fungsi didalam `<script>`. Di fungsi itu terdapat kode yang mengubah display dari box yang ingin dihilangkan menjadi `none` sedangkan yang dimunculkan menjadi `flex` atau sesuai display yang diinginkan. Lalu untuk pegoperasian dengan database ataupun back end, semua saya lakukan dengan library flask (saya memilih ini karena memang hanya ini yang pernah saya pelajari & sudah terbiasa) 
 
-# Update 1
+# Update 1 (E02)
 Saya baru sadar kalau DOM manipulation baru diajarkan disini, karena sebelumnya sudah ada fitur add, edit, dan delete. Maka di app ini tinggal menambahkan fitur checkbox & toggle dark-mode:
 <img width="1852" height="908" alt="image" src="https://github.com/user-attachments/assets/a73702b0-e218-4fe7-8122-59f6ebfcd481" /> <br>
 Disini checkbox akan memanggil event handler `onchange` yang memanggil fungsi `checkHandle(this)`. Fungsi ini akan mengecek status dari element checkbox, apakah checked atau tidak, jika iya akan merubah style dari box todo yang berkaitan:
@@ -29,5 +29,18 @@ Disini checkbox akan memanggil event handler `onchange` yang memanggil fungsi `c
 Saat di-uncheck, style dari element tersebut juga akan direset ulang. Lalu untuk dark-mode, fitur ini menggunakan button di bagian atas kanan untuk memanggil fungsi `changeTheme` saat onclick, fungsi ini menambahkan class `dark_mode` pada element body. Sehingga `body.dark_mode {}` dan style yang diberlakukan pada css akan aktif, yang mana merubah tampilan web menjadi dark:
 <img width="1857" height="886" alt="image" src="https://github.com/user-attachments/assets/6fd3d399-edf5-43e0-812e-7291e00a2118" /> 
 Bisa dilihat juga bahwa saat button "dark mode" dipencet, textnya juga berubah menjadi "white mode". Jika button dipencet lagi akan merubahnya kembali ke theme awal
+
+# Update 2 (E03)
+Ada banyak perubahan pada tugas ketiga ini, karena sebelumnya saya masih menggunakan flask. Jadi dengan diterapkannya web storage ini saya menghapus flask & semua hal yang berkaitan dengan library tersebut. Sehingga seluruh datanya disimpan di web storage. Berikut perubahan-perubahan yang ada: <br>
+1. Data dari setiap todo disimpan dalam indexedDB dengan nama "myDB", sedangkan preferensi theme (dark-mode/light-mode) disimpan di dalam local storage
+<img width="1919" height="893" alt="image" src="https://github.com/user-attachments/assets/455e6e89-a8b6-4ff7-ad7e-4e87689c15ab" />
+2. Add form dapat mengupload/mengambil foto yang akan disimpan di "myDB", lalu bisa diedit di edit form, dan dapat dilihat di deskripsi todo
+<img width="1012" height="462" alt="image" src="https://github.com/user-attachments/assets/a79a2148-1bac-478a-bc51-4051bc6c83d1" />
+<img width="1234" height="671" alt="image" src="https://github.com/user-attachments/assets/95aab3ca-3030-4fbc-a96b-ff21a855d52f" />
+<img width="1080" height="474" alt="image" src="https://github.com/user-attachments/assets/418cb02d-4e7e-4ddf-849f-74585deddbff" />
+3. Ditambahkan service workers, yang mana akan mengirim notifikasi jika date/time nya sesuai dengan tanggal/waktu sekarang 
+
+
+
 
 
