@@ -215,3 +215,32 @@ function changeTheme(themeBtn) {
     document.body.classList.toggle("dark_mode");
     themeBtn.textContent = isDark ? "Dark mode" : "White mode";
 }
+
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", async () => {
+    try {
+      await navigator.serviceWorker.register("./sw.js");
+      console.log("SW registered");
+    } catch (err) {
+      console.error("Failed:", err);
+    }
+  });
+}
+
+let deferredPrompt;
+const btn = document.querySelector("#install-button");
+btn.hidden = true;
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  btn.hidden = false;
+});
+
+btn.addEventListener("click", async () => {
+  if (!deferredPrompt) return;
+  await deferredPrompt.prompt();
+  deferredPrompt = null;
+  btn.hidden = true;
+});

@@ -38,6 +38,13 @@ main .theme_toggle {
     right: 20px;
 }
 
+main .install_btn {
+    position: fixed;
+
+    top: 140px;
+    right: 20px;
+}
+
 main .space {
     flex-shrink: 1;
     flex-grow: 1;

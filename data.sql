@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS todos (
     date DATE,
     time TIME,
     description TEXT,
-    photo_path VARCHAR(255),
+    photo VARCHAR(255),
     is_completed BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

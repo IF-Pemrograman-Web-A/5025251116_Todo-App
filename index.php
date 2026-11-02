@@ -9,6 +9,8 @@ $currentType = $_GET['type'] ?? 'personal';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TODO AOI - Organizational</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#9EA3B9">
 </head>
 <body>
     <header>
@@ -17,6 +19,7 @@ $currentType = $_GET['type'] ?? 'personal';
     <main>
         <?php include 'sidebar.php'; ?>
         <button class="theme_toggle" onclick="changeTheme(this)">Dark Mode</button>
+        <button id="install-button" class="install_btn">Install App</button>
         <div class="space"></div>
         
         <div class="container" style="display: flex; gap: 20px;">
