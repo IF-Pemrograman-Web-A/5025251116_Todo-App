@@ -40,7 +40,54 @@ Ada banyak perubahan pada tugas ketiga ini, karena sebelumnya saya masih menggun
 <img width="1080" height="474" alt="image" src="https://github.com/user-attachments/assets/418cb02d-4e7e-4ddf-849f-74585deddbff" />
 3. Ditambahkan service workers, yang mana akan mengirim notifikasi jika date/time nya sesuai dengan tanggal/waktu sekarang 
 
+# Update 3 (E04)
+Pada tugas keempat ini, penyimpanan data todo dipindahkan dari IndexedDB ke database MySQL dengan PHP sebagai back end. Preferensi theme tetap disimpan di local storage. Berikut perubahan-perubahan yang ada: <br>
+
+1. Database `todo_db` dengan tabel `todos` dibuat melalui `data.sql`. Tabel ini menyimpan nama, tanggal, waktu, deskripsi, foto, dan `type` (personal/shared). Koneksi ke database diatur di `config.php` menggunakan `mysqli`
+<img width="1372" height="477" alt="image" src="https://github.com/user-attachments/assets/fd0f776d-125c-4366-94de-1d5308036a83" />
+
+2. Semua operasi data dilakukan melalui `api.php` dengan parameter `action`:
+   - `get_todos`: mengambil todo sesuai `type`
+   - `add_todo`: menambahkan todo baru
+   - `edit_todo`: mengubah todo
+   - `delete_todo`: menghapus todo
+
+   Seluruh query menggunakan prepared statement (`prepare` & `bind_param`) agar aman dari SQL injection. Respons dikirim dalam format JSON `{"status": "success"}` atau `{"status": "error", "message": ...}`
+
+3. Ditambahkan sidebar (`sidebar.php`) untuk berpindah antara todo Personal dan Shared. Halaman membaca `?type=` dari URL lalu meneruskannya ke JavaScript melalui `CURRENT_TYPE`
+<img width="1861" height="890" alt="image" src="https://github.com/user-attachments/assets/842220d1-f824-49bb-8954-9b618e4a34c6" />
+<img width="1861" height="898" alt="image" src="https://github.com/user-attachments/assets/c6dbf982-efb0-452b-b08f-d5212927dd3e" />
 
 
+4. Di `script.js`, data diambil dan dikirim ke `api.php` menggunakan `fetch` dan `FormData`. Setiap kali add, edit, atau delete berhasil, list todo dimuat ulang dengan `loadAndRenderTodos()`
+
+
+# Update 4 (E05)
+Todo App diubah menjadi Progressive Web App, dimana ada beberapa perubahan:
+1. `manifest.json` berisi name, icons, display `standalone`
+2. `sw.js` melakukan precache app shell (`index.php`, `style.css`, `script.js`, icon) dan `offline.html` saat event `install`, lalu menghapus cache lama saat `activate`
+3. Tombol "Install App" memakai event `beforeinstallprompt`
+
+## Bukti DevTools
+- Application > Manifest : <img width="1183" height="573" alt="image" src="https://github.com/user-attachments/assets/46b00d23-e28c-45bc-88d6-c10813d5bdfd" />
+- Application > Service Workers: <img width="1280" height="710" alt="image" src="https://github.com/user-attachments/assets/74f61a93-9623-4b4a-ad72-378c370dc63d" />
+- Application > Cache Storage: <img width="968" height="522" alt="image" src="https://github.com/user-attachments/assets/8188c5cc-e985-42ed-bd68-07702b1df044" />
+
+
+## Laporan Tes 
+| No | Kondisi | Test | Hasil |
+|---|---|---|---|
+| 1 | Online | Buka app (`index.php?type=personal`) | Halaman dan daftar todo dari database tampil normal |
+| 2 | Online | Add, Edit, Delete todo (dengan foto) | Berhasil, data tersimpan di MySQL dan foto di folder `uploads/` |
+| 3 | Online | Cek Application > Manifest | Name "TODO AOI", icon 192 dan 512, display `standalone` terbaca tanpa error |
+| 4 | Online | Cek Application > Service workers | `sw.js` berstatus activated and is running |
+| 5 | Online | Cek Application > Cache storage | Cache `todo-aoi-v1` berisi file shell, `offline.html`, icon, dan respons `api.php` |
+| 6 | Online | Klik tombol Install App | App ter-install dan terbuka di jendela sendiri (standalone) |
+| 7 | Online | Reload setelah SW aktif | Resource dilayani oleh service worker (kolom Size di tab Network: "ServiceWorker") |
+| 8 | Offline | Reload `index.php?type=personal` | Shell dan daftar todo tetap tampil dari cache |
+| 9 | Offline | Pindah ke halaman Shared | Tetap tampil karena sudah di-precache |
+| 10 | Offline | Buka halaman yang belum pernah dibuka | Muncul `offline.html` |
+| 11 | Offline | Add, Edit, Delete todo | Gagal, karena request POST tidak di-cache dan belum ada sync queue |
+| 12 | Online kembali | Reload | App kembali normal dan data terbaru diambil dari server |
 
 
