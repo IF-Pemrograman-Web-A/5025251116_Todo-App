@@ -40,7 +40,26 @@ Ada banyak perubahan pada tugas ketiga ini, karena sebelumnya saya masih menggun
 <img width="1080" height="474" alt="image" src="https://github.com/user-attachments/assets/418cb02d-4e7e-4ddf-849f-74585deddbff" />
 3. Ditambahkan service workers, yang mana akan mengirim notifikasi jika date/time nya sesuai dengan tanggal/waktu sekarang 
 
+# Update 3 (E04)
+Pada tugas keempat ini, penyimpanan data todo dipindahkan dari IndexedDB ke database MySQL dengan PHP sebagai back end. Preferensi theme tetap disimpan di local storage. Berikut perubahan-perubahan yang ada: <br>
 
+1. Database `todo_db` dengan tabel `todos` dibuat melalui `data.sql`. Tabel ini menyimpan nama, tanggal, waktu, deskripsi, foto, dan `type` (personal/shared). Koneksi ke database diatur di `config.php` menggunakan `mysqli`
+<img width="1372" height="477" alt="image" src="https://github.com/user-attachments/assets/fd0f776d-125c-4366-94de-1d5308036a83" />
+
+2. Semua operasi data dilakukan melalui `api.php` dengan parameter `action`:
+   - `get_todos`: mengambil todo sesuai `type`
+   - `add_todo`: menambahkan todo baru
+   - `edit_todo`: mengubah todo
+   - `delete_todo`: menghapus todo
+
+   Seluruh query menggunakan prepared statement (`prepare` & `bind_param`) agar aman dari SQL injection. Respons dikirim dalam format JSON `{"status": "success"}` atau `{"status": "error", "message": ...}`
+
+3. Ditambahkan sidebar (`sidebar.php`) untuk berpindah antara todo Personal dan Shared. Halaman membaca `?type=` dari URL lalu meneruskannya ke JavaScript melalui `CURRENT_TYPE`
+<img width="1861" height="890" alt="image" src="https://github.com/user-attachments/assets/842220d1-f824-49bb-8954-9b618e4a34c6" />
+<img width="1861" height="898" alt="image" src="https://github.com/user-attachments/assets/c6dbf982-efb0-452b-b08f-d5212927dd3e" />
+
+
+4. Di `script.js`, data diambil dan dikirim ke `api.php` menggunakan `fetch` dan `FormData`. Setiap kali add, edit, atau delete berhasil, list todo dimuat ulang dengan `loadAndRenderTodos()`
 
 
 
